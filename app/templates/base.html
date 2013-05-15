@@ -1,0 +1,63 @@
+<html>
+  <head>
+  	<link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+  	<link href="{{url_for('static', filename = 'css/main.css')}}" rel="stylesheet">
+  	<script src="{{url_for('static', filename='javascript/jquery-1.9.1.min.js')}} "></script>
+  	<script src="{{url_for('static', filename='javascript/bootstrap.min.js')}} "></script>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>microblog</title>
+    {% endif %}
+  </head>
+  <body>
+  	<div class="row-fluid">
+  		<div class="span3"><a href="{{url_for('index') }}"><img src="{{url_for('static', filename = 'images/NYUTube.png')}}" alt="nyutube"></img></a></div>
+  		{% if g.user.is_authenticated() %}	
+  		<div class="span6 offset3"><div class="heading pull-right">Hi, <span class="purple">{{user.nickname}}</span>! <img class="img-polaroid" src="http://graph.facebook.com/{{user.facebook}}/picture?width=50&height=50"></div></div>
+  		{% endif %}
+  	</div>
+		<div class="row-fluid">
+    	<div class="span3 offset9">
+				<ul class="nav nav-pills">
+					<li>
+						<a href="{{url_for('index') }}">Home</a>
+					</li>
+					<li>
+						<a href="{{url_for('upload') }}">Upload</a>
+					</li>
+					<li class="dropdown">
+						<a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">
+									Profile
+									<b class="caret"></b>
+							</a>
+						<ul class="dropdown-menu pull-right">
+							<li>
+								<a href="{{url_for('profile') }}">Update Profile
+								</a>
+							</li>
+							<li>
+								{% if g.user.is_authenticated() %}
+								<a href="{{ url_for('logout') }}">Logout</a>
+								{% endif %}
+							</li>
+						</ul>
+					</li>   			
+    		</ul>
+    	</div>
+    </div>
+    
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }} </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>

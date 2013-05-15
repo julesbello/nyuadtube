@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript">
+</script>
+<form action="" method="post" name="login" class ="form-horizontal">
+    {{form.hidden_tag()}}
+ 		{{form.openid(size=80, class="hide", value="https://www.google.com/accounts/o8/id")}}
+  
+    <div class="fluid-row"><div class="span6 offset4"><input type="submit" id="button" class="btn btn-large btn-block btn-primary" value="Sign In"></div></div>
+</form>
+{% endblock %}

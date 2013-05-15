@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="purple">Upload your video:</h2>
+<form action="" method="post" name="upload">
+	<fieldset>
+    {{form.hidden_tag()}}
+        <legend>Enter the URL of the YouTube video you'd like to post.</legend>
+        Enter the URL<br>
+        {{form.link}}
+        {% for error in form.errors.link %}
+        <span class='alert alert-error'>{{error}}</span>
+        {% endfor %}<br>
+        Write a comment<br>
+        {{form.comment(id="comment", rows=3)}}
+        <br>
+    </p>
+    <p><input type="submit" class="btn" value="Upload"></p>
+  </fieldset>
+</form>
+{% endblock %}

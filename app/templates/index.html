@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="purple">Videos</h2>
+{% for video in videos %}
+<div class="span6">
+	<div class="span2">{{video.author.nickname}} posted:</div>
+	<div class="well">
+		<div class="video-container">
+	 		<iframe class="center" height="250" width="500" src="http://www.youtube.com/embed/{{video.link.split('v=')[1] if video.link.find('v=') > 0 else 'invalid url'}}" frameborder="0" allowfullscreen></iframe></br> 
+	 	</div>
+	 	<div class="span12">{{video.comment}}</div>
+	</div>
+</div>
+{% endfor %}
+{% endblock %}
+
+ 
+
+ 
